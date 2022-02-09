@@ -12,10 +12,10 @@ const Login = () => {
         <section className='bg-green-200 w-[50vw] flex items-center justify-center'>
 
             <div className='bg-blue-200 flex flex-col items-center justify-center w-5/6 m-auto p-1 space-y-10'>
-                <div className='text-xl font-bold'> LOGIN </div>
-                <div className='text-[#3F3D56] text-center text-sm'> 
+                <h1 className='text-xl font-bold'> LOGIN </h1>
+                <p className='text-[#3F3D56] text-center text-sm'> 
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam consequuntur praesentium ut nam consequatur voluptatem iure quod hic vel doloremque!
-                </div>
+                </p>
 
                 <button className='bg-[#597EF7] flex items-center justify-center rounded-sm py-1'>
                     <FcGoogle className='bg-white h-8 w-8 rounded-sm ml-1 p-1'/>

@@ -7,18 +7,18 @@ const RightSection = () => {
   return (
     <section className="bg-red-200 w-[50vw] pt-4">
 
-      <div className="m-auto bg-red-300 w-3/4 p-1">
+      <div className="m-auto bg-red-300 w-5/6 h-5/6 p-1 pt-6">
 
-        <div>TODO LIST</div>
+        <div className="text-lg font-bold">TODO LIST</div>
 
-        <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center justify-between mt-8">
 
           <div className="relative">
-            <input type="text" placeholder="Search" />
-            <BiSearchAlt2  className="absolute top-1 right-1"/>
+            <input type="text" placeholder="Search" className="p-1 rounded-sm outline-none" />
+            <BiSearchAlt2  className="absolute top-2 right-1 text-[#3F3D56]"/>
           </div>
 
-          <select id="" name="">
+          <select id="" name="" className="p-1 h-8 rounded-sm outline-none">
             <option disabled selected hidden>
               Filter By
             </option>
@@ -26,9 +26,10 @@ const RightSection = () => {
             <option defaultValue="Favourite">Favourite</option>
             <option defaultValue="Deleted">Deleted</option>
           </select>
+
         </div>
 
-        <div>
+        <div className="space-y-3 mt-40">
 
           {/* {
             todoListContext.todoList.map((todo) => {
