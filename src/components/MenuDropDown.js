@@ -6,7 +6,7 @@ export default function MenuDropDown() {
 
     const [selectItem, setSelectItem] = useState(null);
 
-    console.log(selectItem);
+    // console.log(selectItem);
 
   return (
 

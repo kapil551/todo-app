@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import TodoItem from "./TodoItem";
 import { BiSearchAlt2 } from 'react-icons/bi';
 
 const RightSection = () => {
+
   return (
     <section className="bg-red-200 w-[50vw] pt-4">
 
@@ -18,16 +19,24 @@ const RightSection = () => {
           </div>
 
           <select id="" name="">
-            <option value="" disabled selected hidden>
+            <option disabled selected hidden>
               Filter By
             </option>
-            <option value="Completed">Completed</option>
-            <option value="Favourite">Favourite</option>
-            <option value="Deleted">Deleted</option>
+            <option defaultValue="Completed">Completed</option>
+            <option defaultValue="Favourite">Favourite</option>
+            <option defaultValue="Deleted">Deleted</option>
           </select>
         </div>
 
         <div>
+
+          {/* {
+            todoListContext.todoList.map((todo) => {
+              return (
+                <TodoItem />
+              )
+            })
+          } */}
           
           <TodoItem />
           <TodoItem />

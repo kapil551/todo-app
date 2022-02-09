@@ -7,6 +7,8 @@ const LeftSection = () => {
   let [todoData, setTodoData] = useState({});
 
   const submitHandler = () => {
+
+    console.log(todoTitle, todoDescription);
     
     setTodoData({
       title: todoTitle,
@@ -23,6 +25,7 @@ const LeftSection = () => {
   // console.log(todoDescription);
 
   return (
+
     <section className="bg-green-200 w-[50vw] pt-4">
       {/* title */}
       <div className="flex flex-col w-3/4 items-center justify-center space-y-4 bg-red-100 m-auto p-1">
