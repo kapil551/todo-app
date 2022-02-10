@@ -5,6 +5,8 @@ import { ReactComponent as LoginImage } from '../images/login.svg';
 
 import { FcGoogle } from 'react-icons/fc';
 
+import { signInWithGoogle } from '../firebase/firebase.utils';
+
 const Login = () => {
   return (
     <main className='w-screen h-screen flex'>
@@ -17,7 +19,7 @@ const Login = () => {
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam consequuntur praesentium ut nam consequatur voluptatem iure quod hic vel doloremque!
                 </p>
 
-                <button className='bg-[#597EF7] flex items-center justify-center rounded-sm py-1'>
+                <button className='bg-[#597EF7] flex items-center justify-center rounded-sm py-1' onClick={signInWithGoogle}>
                     <FcGoogle className='bg-white h-8 w-8 rounded-sm ml-1 p-1'/>
                     <div className='text-white mx-4'> Sign in using Google </div>
                 </button>
