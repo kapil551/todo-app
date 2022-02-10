@@ -7,6 +7,8 @@ import Login from './components/Login';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { useEffect, useState } from 'react';
 
+import RequireAuth from './auth/RequireAuth';
+
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
@@ -55,7 +57,14 @@ function App() {
       <Routes>
 
         <Route exact path='/' element={<Login currentUser={currentUser} />} />
-        <Route exact path='dashboard' element={<Dashboard />} />
+        <Route 
+          exact path='/dashboard' 
+          element={ 
+            <RequireAuth currentUser={currentUser}>
+              <Dashboard />
+            </RequireAuth>
+          } 
+        />
       </Routes>
     </div>
   );

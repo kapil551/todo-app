@@ -18,7 +18,7 @@ const Login = ({ currentUser }) => {
         () => {
 
             if(currentUser) {
-                navigate('/dashboard', { replace: false });
+                navigate('/dashboard');
             }
 
         }, [currentUser]

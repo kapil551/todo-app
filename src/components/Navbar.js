@@ -6,6 +6,7 @@ import { auth } from '../firebase/firebase.utils';
 const Navbar = ({ currentUser }) => {
 
   const navigate = useNavigate();
+
   useEffect(
     () => {
 
