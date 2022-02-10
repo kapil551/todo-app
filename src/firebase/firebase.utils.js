@@ -18,6 +18,42 @@ firebase.initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const firestore = firebase.firestore();
 
+// storing user data in firebase cloud firestore
+export const createUserProfileDocument = async(userAuth, additionalData) => {
+    
+    // if the user auth object does not exist
+    if(!userAuth) {
+        return;
+    }
+
+    // if the user auth object does exist
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+    const snapShot = await userRef.get();
+
+    // console.log(snapShot);
+
+    if(!snapShot.exists) {
+        const { displayName, email } = userAuth;
+        const createdAt = new Date();
+
+        try {
+            await userRef.set({
+                displayName,
+                email,
+                createdAt,
+                ...additionalData
+            })
+
+        } catch(err) {
+            console.log(`error creating a user`, err.message);
+        }
+    }
+
+    return userRef;
+
+}
+
 // Authenticate Using Google Sign-In
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });

@@ -4,41 +4,58 @@ import Navbar from './components/Navbar';
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import Login from './components/Login';
 
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { useEffect, useState } from 'react';
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
-  console.log(currentUser);
+  // console.log(currentUser);
 
   const location = useLocation();
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
   // firebase user authentication
   useEffect(
     () => {
 
-      auth.onAuthStateChanged(user => {
+      auth.onAuthStateChanged( async userAuth => {
 
-        console.log(user);
-        setCurrentUser(user);
-      })
+        if(userAuth) {
 
-    }
+          // creating a user session
+          const userRef = await createUserProfileDocument(userAuth);
+
+          userRef.onSnapshot(snapShot => {
+
+            // console.log(snapShot);
+            setCurrentUser({
+              id: snapShot.id,
+              ...snapShot.data()
+            });
+          })
+
+          // console.log(currentUser);
+        }
+        else {
+          setCurrentUser(null);
+        }
+      });
+
+    }, []
   )
 
   return (
     <div className="w-screen h-screen flex flex-col">
 
       {
-        location.pathname !== '/login' ? <Navbar currentUser={currentUser} /> : null
+        location.pathname !== '/' ? <Navbar currentUser={currentUser} /> : null
       }
       
       <Routes>
 
-        <Route path='login' element={<Login />} />
-        <Route path='dashboard' element={<Dashboard />} />
+        <Route exact path='/' element={<Login currentUser={currentUser} />} />
+        <Route exact path='dashboard' element={<Dashboard />} />
       </Routes>
     </div>
   );

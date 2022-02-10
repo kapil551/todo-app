@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // import the svg file as a ReactComponent
 import { ReactComponent as LoginImage } from '../images/login.svg';
@@ -6,8 +6,29 @@ import { ReactComponent as LoginImage } from '../images/login.svg';
 import { FcGoogle } from 'react-icons/fc';
 
 import { signInWithGoogle } from '../firebase/firebase.utils';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ currentUser }) => {
+    
+    const navigate = useNavigate();
+
+    // console.log(currentUser);
+
+    useEffect(
+        () => {
+
+            if(currentUser) {
+                navigate('/dashboard', { replace: false });
+            }
+
+        }, [currentUser]
+    )
+    
+    const handleGoogleSignIn = () => {
+
+        signInWithGoogle();
+    }
+
   return (
     <main className='w-screen h-screen flex'>
 
@@ -19,7 +40,7 @@ const Login = () => {
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam consequuntur praesentium ut nam consequatur voluptatem iure quod hic vel doloremque!
                 </p>
 
-                <button className='bg-[#597EF7] flex items-center justify-center rounded-sm py-1' onClick={signInWithGoogle}>
+                <button className='bg-[#597EF7] flex items-center justify-center rounded-sm py-1' onClick={() => handleGoogleSignIn()}>
                     <FcGoogle className='bg-white h-8 w-8 rounded-sm ml-1 p-1'/>
                     <div className='text-white mx-4'> Sign in using Google </div>
                 </button>
